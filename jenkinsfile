@@ -3,38 +3,36 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            steps {
+            steps{
                 git branch: 'main',
-                    url: 'git@github.com:SoBadDep/first-project.git'
-            }
+                    url: 'https://github.com/bakavets/docker-lessons.git'        
+                }
         }
-
-    }
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    dir('Deploy-Prod')
-                    sh 'docker build -t my-apache-app .'
+        stage('Build docker Apache') {
+            steps{
+                sh 'docker build -t my-apache-app .'
                 }
             }
         }
-
-        stage('Deploy') {
+        stage('Build docker Nginx')
+            steps{
+                sh 'docker build -t my-nginx-app .'
+            }
+     stage('Deploy') {
             steps {
                 script {
                     sh '''
                     docker stop my-apache-container || true
                     docker rm my-apache-container || true
                     docker run -d --name my-apache-container -p 8081:80 my-apache-app
+                    docker run -d --name my-nginx-container -p 8081:80 my-nginx-app
                     '''
                 }
             }
         }
-    }
-
-    post {
+    } 
+     post {
         always {
-            cleanWs()
+            cleanWs()  
         }
-    }
 }
