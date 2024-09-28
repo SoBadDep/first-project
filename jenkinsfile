@@ -7,20 +7,19 @@ pipeline {
                 git branch: 'main',
                     url: 'git@github.com:SoBadDep/first-project.git'        
                 }
-        }
+            }    
         stage('Build docker Apache') {
             steps{
                 sh 'docker build -t my-apache-app .'
                 }
             }
-        }
         stage('Build docker Nginx') {
             steps{
-                dir('nginx')
-                sh 'docker build -t my-nginx-app .'
+                dir('nginx') {
+                    sh 'docker build -t my-nginx-app .'
                 }
-            }
-        } 
+            }   
+        }
      stage('Deploy') {
             steps {
                 script {
@@ -34,10 +33,11 @@ pipeline {
                     '''
                 }
             }
-        }
-    } 
-     post {
+        }    
+    }   
+        post {
         always {
-            cleanWs()  
-        }
+        cleanWs()  
+            }
+        }            
 }
