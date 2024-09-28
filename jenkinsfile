@@ -14,11 +14,13 @@ pipeline {
                 }
             }
         }
-        stage('Build docker Nginx')
+        stage('Build docker Nginx') {
             steps{
                 dir('nginx')
                 sh 'docker build -t my-nginx-app .'
+                }
             }
+        } 
      stage('Deploy') {
             steps {
                 script {
