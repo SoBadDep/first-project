@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps{
                 git branch: 'main',
-                    url: 'https://github.com/bakavets/docker-lessons.git'        
+                    url: 'git@github.com:SoBadDep/first-project.git'        
                 }
         }
         stage('Build docker Apache') {
