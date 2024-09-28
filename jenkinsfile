@@ -16,6 +16,7 @@ pipeline {
         }
         stage('Build docker Nginx')
             steps{
+                dir('nginx')
                 sh 'docker build -t my-nginx-app .'
             }
      stage('Deploy') {
@@ -24,6 +25,8 @@ pipeline {
                     sh '''
                     docker stop my-apache-container || true
                     docker rm my-apache-container || true
+                    docker stop my-nginx-container || true
+                    docker rm my-nginx-container || true
                     docker run -d --name my-apache-container -p 8081:80 my-apache-app
                     docker run -d --name my-nginx-container -p 8081:80 my-nginx-app
                     '''
