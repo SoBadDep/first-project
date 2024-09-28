@@ -6,6 +6,8 @@ pipeline {
             steps {
                 git branch: 'main',
                     url: 'git@github.com:SoBadDep/first-project.git'
+                sh 'pwd'
+                sh 'ls -la'
             }
         }
 
