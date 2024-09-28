@@ -1,7 +1,4 @@
 pipeline {
-    when {
-        branch 'main'
-    }
 
     stages {
         stage('Checkout') {
