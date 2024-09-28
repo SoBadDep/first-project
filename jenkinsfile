@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git config --global —add url.”https://username:password@github.com/“.insteadOf “https://github.com”
+                git 'git@github.com:SoBadDep/first-project.git'
             }
         }
 
