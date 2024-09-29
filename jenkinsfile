@@ -36,8 +36,8 @@ ipeline {
         }    
     }   
         post {
-        always {
-        cleanWs()  
+          always {
+            cleanWs()  
             }
         }            
 }
