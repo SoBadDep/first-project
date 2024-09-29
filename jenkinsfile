@@ -29,7 +29,7 @@ pipeline {
                     docker stop my-nginx-container || true
                     docker rm my-nginx-container || true
                     docker run -d --name my-apache-container -p 8081:80 my-apache-app
-                    docker run -d --name my-nginx-container -p 8080:80 my-nginx-app
+                    docker run -d --name my-nginx-container -p 80:80 my-nginx-app
                     '''
                 }
             }
