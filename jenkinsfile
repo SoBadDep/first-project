@@ -10,16 +10,14 @@ pipeline {
             }    
         stage('Build docker Apache') {
             steps{
-                sh 'docker build -t my-apache-app .'
+                sh 'docker build -t my-apache-app -f dockerfile .'
                 }
             }
         stage('Build docker Nginx') {
             steps{
-                dir('nginx') {
-                    sh 'docker build -t my-nginx-app .'
+                  sh 'docker build -t my-nginx-app -f Dockerfile .'
                 }
-            }   
-        }
+            }
      stage('Deploy') {
             steps {
                 script {
