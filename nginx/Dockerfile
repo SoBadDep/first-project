@@ -1,5 +1,4 @@
 FROM nginx:latest
-WORKDIR usr/local/apache2/htdocs
 COPY ./nginx.conf /etc/nginx/conf.d/nginx.conf
 COPY ./index.html /usr/local/apache2/htdocs/index.html
 RUN apt-get -y update && apt-get install -y nginx
